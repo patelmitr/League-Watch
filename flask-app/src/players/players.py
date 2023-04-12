@@ -20,7 +20,7 @@ def get_players():
     the_response.mimetype = 'application/json'
     return the_response
 
-# Get player detail for player with particular userID
+# Get player detail for player with particular playerID
 @players.route('/players/<playerID>', methods=['GET'])
 def get_specificPlayer(playerID):
     cursor = db.get_db().cursor()

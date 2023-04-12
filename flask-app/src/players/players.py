@@ -22,7 +22,7 @@ def get_players():
 
 # Get player detail for player with particular userID
 @players.route('/players/<playerID>', methods=['GET'])
-def get_customer(playerID):
+def get_specificPlayer(playerID):
     cursor = db.get_db().cursor()
     cursor.execute('select * from players where player_id = {0}'.format(playerID))
     row_headers = [x[0] for x in cursor.description]
@@ -37,7 +37,7 @@ def get_customer(playerID):
 
 # Get player detail for players with particular number of points
 @players.route('/players/<points>', methods=['GET'])
-def get_customer(points):
+def get_points(points):
     cursor = db.get_db().cursor()
     cursor.execute('select * from players where points = {0}'.format(points))
     row_headers = [x[0] for x in cursor.description]
@@ -52,7 +52,7 @@ def get_customer(points):
 
 # Get player detail for players with particular number of assists
 @players.route('/players/<assists>', methods=['GET'])
-def get_customer(assists):
+def get_assists(assists):
     cursor = db.get_db().cursor()
     cursor.execute('select * from players where assists = {0}'.format(assists))
     row_headers = [x[0] for x in cursor.description]
@@ -67,7 +67,7 @@ def get_customer(assists):
 
 # Get player detail for players with particular number of steals
 @players.route('/players/<steals>', methods=['GET'])
-def get_customer(steals):
+def get_steals(steals):
     cursor = db.get_db().cursor()
     cursor.execute('select * from players where steals = {0}'.format(steals))
     row_headers = [x[0] for x in cursor.description]
@@ -82,7 +82,7 @@ def get_customer(steals):
 
 # Get player detail for players with particular number of blocks
 @players.route('/players/<blocks>', methods=['GET'])
-def get_customer(blocks):
+def get_blocks(blocks):
     cursor = db.get_db().cursor()
     cursor.execute('select * from players where blocks = {0}'.format(blocks))
     row_headers = [x[0] for x in cursor.description]
@@ -97,7 +97,7 @@ def get_customer(blocks):
 
 # Get player detail for players with particular number of rebounds
 @players.route('/players/<rebounds>', methods=['GET'])
-def get_customer(rebounds):
+def get_rebounds(rebounds):
     cursor = db.get_db().cursor()
     cursor.execute('select * from players where rebounds = {0}'.format(rebounds))
     row_headers = [x[0] for x in cursor.description]
@@ -148,7 +148,7 @@ def add_new_product ():
 #TODO
 # Put a player in the DB
 @players.route('/players', methods=['PUT'])
-def get_customer(playerID):
+def put_player(playerID):
     cursor = db.get_db().cursor()
     cursor.execute('insert first_name, last_name, salary, team_id, player_id, player_number, position, points, assists, steals, blocks, rebounds, turnovers, games_played from players')
     row_headers = [x[0] for x in cursor.description]

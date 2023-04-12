@@ -135,7 +135,20 @@ def add_new_product ():
 
     # construct the insert statement
     insert_stmt = 'INSERT INTO players (first_name, last_name, salary, team_id, player_id, player_number, position, points, assists, steals, blocks, rebounds, turnovers, games_played) VALUES ("'
-    insert_stmt += first_name + '", "' + last_name + str(salary) + str(team_id) + str(player_id) + str(player_number) + str(position) + str(points) + str(assists) + str(steals) + str(blocks) + str(rebounds) + str(turnovers) + str(games_played) + ')'
+    insert_stmt += first_name + '", "'
+    insert_stmt += last_name + '", "'
+    insert_stmt += str(salary) + '", "'
+    insert_stmt += str(team_id) + '", "'
+    insert_stmt += str(player_id) + '", "'
+    insert_stmt += str(player_number) + '", "'
+    insert_stmt += str(position) + '", "'
+    insert_stmt += str(points) + '", "'
+    insert_stmt += str(assists) + '", "'
+    insert_stmt += str(steals) + '", "'
+    insert_stmt += str(blocks) + '", "'
+    insert_stmt += str(rebounds) + '", "'
+    insert_stmt += str(turnovers) + '", "'
+    insert_stmt += str(games_played) + ')'
 
     current_app.logger.info(insert_stmt)
 

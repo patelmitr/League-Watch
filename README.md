@@ -16,4 +16,9 @@ This repo contains a boilerplate setup for spinning up 3 Docker containers:
 1. Start the containers with `docker compose up`.  To run in detached mode, run `docker compose up -d`. 
 
 ## Start the Docker Containers
-To start the docker containers, we must activate our environment which should be created using Anaconda-Navigator. To activate the environment we use the command "conda activate <environment-name>". This will then start the docker containers. To run the application we must use the command "docker compose up" in the terminal. This will then start our application to be accessed locally. To then access the application, go to a browser and go to "localhost:8080" and it should open up the appsmith page.
+1. To start the docker containers, we must activate our environment which should be created using Anaconda-Navigator.
+1. To activate the environment we use the command "conda activate <environment-name>".
+1. This will then start the docker containers. 
+1. To run the application we must use the command "docker compose up" in the terminal.
+1. This will then start our application to be accessed locally.
+1. To then access the application, go to a browser and go to "localhost:8080" and it should open up the appsmith page.

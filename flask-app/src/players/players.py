@@ -162,8 +162,58 @@ def add_new_product ():
 # Put a player in the DB
 @players.route('/players', methods=['PUT'])
 def put_player(playerID):
+    # access json data from, request object.
+    current_app.logger.info('Processing form data')
+    req_data = request.get_json()
+    current_app.logger.info(req_data)
+
+    first_name = req_data ['first _name']
+    last_name = req_data['last_name']
+    salary = req_data['salary']
+    team_id = req_data ['team_id']
+    player_number = req_data['player_number']
+    position = req_data ['position']
+    points = req_data['points']
+    assists = req_data['assists']
+    steals = req_data ['steals']
+    blocks = req_data['blocks']
+    rebounds = req_data['rebounds']
+    turnovers = req_data['turnovers']
+    games_played = req_data['games_played']
+
+    # construct the update statement
+    update_stmt = 'update players set first_name = \''
+    update_stmt += first_name + '\', '
+    update_stmt += 'last_name = \''
+    update_stmt += last_name + '\', '
+    update_stmt += 'salary = \''
+    update_stmt += salary + '\', '
+    update_stmt += 'team_id = \''
+    update_stmt += team_id + '\', '
+    update_stmt += 'player_number = \''
+    update_stmt += player_number + '\', '
+    update_stmt += 'position = \''
+    update_stmt += position + '\', '
+    update_stmt += 'points = \''
+    update_stmt += points + '\', '
+    update_stmt += 'assists = \''
+    update_stmt += assists + '\', '
+    update_stmt += 'steals = \''
+    update_stmt += steals + '\', '
+    update_stmt += 'blocks = \''
+    update_stmt += blocks + '\', '
+    update_stmt += 'rebounds = \''
+    update_stmt += rebounds + '\', '
+    update_stmt += 'turnovers = \''
+    update_stmt += turnovers + '\', '
+    update_stmt += 'games_played = \''
+    update_stmt += games_played + '\' '
+    update_stmt += 'where player_id = ' + playerID
+
+
+    # execute the query
     cursor = db.get_db().cursor()
-    cursor.execute('insert first_name, last_name, salary, team_id, player_id, player_number, position, points, assists, steals, blocks, rebounds, turnovers, games_played from players')
+    cursor.execute(update_stmt)
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()

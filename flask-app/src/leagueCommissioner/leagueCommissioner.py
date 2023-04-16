@@ -145,15 +145,67 @@ def add_new_product ():
 #TODO
 # Put a leagueCommissioner in the DB
 @leagueCommissioner.route('/leagueCommissioner', methods=['PUT'])
-def get_customer(leagueCommissionerID):
- cursor = db.get_db().cursor()
- cursor.execute('insert first_name, last_name, salary, team_id, leagueCommissioner_id, leagueCommissioner_number, position, points, assists, steals, blocks, rebounds, turnovers, games_played from leagueCommissioner')
- row_headers = [x[0] for x in cursor.description]
- json_data = []
- theData = cursor.fetchall()
- for row in theData:
-  json_data.append(dict(zip(row_headers, row)))
- the_response = make_response(jsonify(json_data))
- the_response.status_code = 200
- the_response.mimetype = 'application/json'
- return the_response
+def put_leagueCommissioner(leagueCommissionerID):
+# access json data from, request object.
+current_app.logger.info('Processing form data')
+req_data = request.get_json()
+current_app.logger.info(req_data)
+
+first_name = req_data ['first _name']
+last_name = req_data['last_name']
+tenure = req_data['tenure']
+salary = req_data ['salary']
+league_name = req_data['league_name']
+
+# construct the update statement
+update_stmt = 'update leagueCommissioner set first_name = \''
+update_stmt += first_name + '\', '
+update_stmt += 'last_name = \''
+update_stmt += last_name + '\', '
+update_stmt += 'salary = \''
+update_stmt += tenure + '\', '
+update_stmt += 'team_id = \''
+update_stmt += salary + '\', '
+update_stmt += 'player_number = \''
+update_stmt += league_name + '\', '
+update_stmt += 'where player_id = ' + leagueCommissionerID
+
+
+# execute the query
+cursor = db.get_db().cursor()
+cursor.execute(update_stmt)
+row_headers = [x[0] for x in cursor.description]
+json_data = []
+theData = cursor.fetchall()
+for row in theData:
+json_data.append(dict(zip(row_headers, row)))
+the_response = make_response(jsonify(json_data))
+the_response.status_code = 200
+the_response.mimetype = 'application/json'
+return the_response
+
+# Delete a player in the DB
+@leagueCommissioner.route('/leagueCommissioner', methods=['DELETE'])
+def delete_player(leagueCommissionerID):
+# access json data from, request object.
+current_app.logger.info('Processing form data')
+req_data = request.get_json()
+current_app.logger.info(req_data)
+
+# construct the delete statement
+delete_stmt = 'delete from players where player_id = \''
+delete_stmt += leagueCommissionerID + '\';'
+
+
+# execute the query
+cursor = db.get_db().cursor()
+cursor.execute(delete_stmt)
+row_headers = [x[0] for x in cursor.description]
+json_data = []
+theData = cursor.fetchall()
+for row in theData:
+json_data.append(dict(zip(row_headers, row)))
+the_response = make_response(jsonify(json_data))
+the_response.status_code = 200
+the_response.mimetype = 'application/json'
+return the_response
